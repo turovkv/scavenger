@@ -1,1 +1,5 @@
-# java-unused-variables
+# UnusedJava
+
+```bash
+./gradlew -q run --args="lol kek"
+```
