@@ -16,6 +16,7 @@ application {
 }
 
 dependencies {
+    implementation("com.github.javaparser:javaparser-symbol-solver-core:3.24.0")
     testImplementation(kotlin("test"))
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
 }
