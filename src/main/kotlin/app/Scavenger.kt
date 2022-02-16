@@ -10,7 +10,7 @@ import com.github.javaparser.ast.visitor.Visitable
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter
 import java.io.File
 
-class Inspector {
+class Scavenger {
     fun removeUnusedVarDeclsFromFile(file: File, notDeep: Boolean, quiet: Boolean) {
         if (file.extension != "java") {
             if (!quiet) {

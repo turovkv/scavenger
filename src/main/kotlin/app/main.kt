@@ -14,13 +14,13 @@ class Cli : CliktCommand() {
     private val quiet by option("-q", "--quiet", help = "No output to console").flag()
 
     override fun run() {
-        val inspector = Inspector()
+        val scavenger = Scavenger()
         if (file.isDirectory) {
             file.walk().forEach {
-                inspector.removeUnusedVarDeclsFromFile(it, notDeep, quiet)
+                scavenger.removeUnusedVarDeclsFromFile(it, notDeep, quiet)
             }
         } else {
-            inspector.removeUnusedVarDeclsFromFile(file, notDeep, quiet)
+            scavenger.removeUnusedVarDeclsFromFile(file, notDeep, quiet)
         }
     }
 }

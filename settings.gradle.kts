@@ -1,2 +1,1 @@
-rootProject.name = "java-unused-variables"
-include("app")
+rootProject.name = "scavenger"
