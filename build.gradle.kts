@@ -17,10 +17,21 @@ application {
 
 dependencies {
     implementation("com.github.javaparser:javaparser-symbol-solver-core:3.24.0")
-    testImplementation(kotlin("test"))
+    implementation("com.github.ajalt.clikt:clikt:3.4.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.6.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "app.MainKt"
+    }
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }

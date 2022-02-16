@@ -1,10 +1,9 @@
 class myClass {
+
     public int myFun() {
         int a = 1;
-        int z, r;
-        int removeMe = 90;
+        int r;
         if (a > 1) {
-            int b = 5;
         }
         if (a > 2) {
             int b = 6;
