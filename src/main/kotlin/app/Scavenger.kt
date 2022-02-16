@@ -25,24 +25,26 @@ class Scavenger {
             println("File ${file.path}:")
         }
 
-        var level = 1
+        var iteration = 1
         while (true) {
             val unusedVarDecls = getUnusedAstVarDecls(compilationUnit)
             if (unusedVarDecls.isEmpty()) {
-                if (!quiet && level == 1) {
+                if (!quiet && iteration == 1) {
                     println("No declarations removed!")
                 }
                 break
             }
             removeUnusedAstVarDecls(compilationUnit, unusedVarDecls)
             if (!quiet) {
-                println("removed from level $level :")
-                unusedVarDecls.forEach { println(it) }
+                println("removed on iteration $iteration :")
+                unusedVarDecls.forEach {
+                    println("variable declaration on line ${it.line} with name ${it.name}  (scopeId ${it.scopeId})")
+                }
             }
             if (notDeep) {
                 break
             }
-            level++
+            iteration++
         }
 
         file.writeText(compilationUnit.toString())
