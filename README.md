@@ -1,9 +1,13 @@
 # Scavenger
 
 Scavenger is a cli application for removing unused variable declarations from java code.  
-Variable is unused if it is not used anywhere or is used in unused declarations (`deep` flag)  
+
+Variable is unused if it is not used anywhere or is used in unused declarations.  
+If `--not-deep` flag is `on`, than variable is unused only if it is not used anywhere.
+
+The app can work with single a file and with a directory.  
 Files with java code must compile without errors.  
-The app can work with single a file and with a directory. The app overwrites the files.
+The app overwrites the files.
 
 ---
 build:
