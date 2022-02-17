@@ -10,7 +10,7 @@ import java.io.File
 class Cli : CliktCommand() {
     private val file: File by argument().file(mustExist = true, mustBeReadable = true, mustBeWritable = true)
 
-    private val notDeep by option(help = "Do not remove deep (iteratively until there are no more)").flag()
+    private val notDeep by option(help = "Do not remove deeply (until there are no more unused)").flag()
     private val quiet by option("-q", "--quiet", help = "No output to console").flag()
 
     override fun run() {
