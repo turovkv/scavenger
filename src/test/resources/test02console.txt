@@ -1,0 +1,8 @@
+removed on iteration 1 :
+variable declaration on line 7 with name a4  (scopeId 1)
+removed on iteration 2 :
+variable declaration on line 6 with name a3  (scopeId 1)
+removed on iteration 3 :
+variable declaration on line 5 with name a2  (scopeId 1)
+removed on iteration 4 :
+variable declaration on line 4 with name a1  (scopeId 1)
