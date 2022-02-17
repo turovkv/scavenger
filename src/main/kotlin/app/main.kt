@@ -17,7 +17,9 @@ class Cli : CliktCommand() {
         val scavenger = Scavenger()
         if (file.isDirectory) {
             file.walk().forEach {
-                overrideFile(scavenger, it)
+                if (!it.isDirectory) {
+                    overrideFile(scavenger, it)
+                }
             }
         } else {
             overrideFile(scavenger, file)
