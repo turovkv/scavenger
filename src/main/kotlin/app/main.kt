@@ -17,11 +17,25 @@ class Cli : CliktCommand() {
         val scavenger = Scavenger()
         if (file.isDirectory) {
             file.walk().forEach {
-                scavenger.removeUnusedVarDeclsFromFile(it, notDeep, quiet)
+                overrideFile(scavenger, it)
             }
         } else {
-            scavenger.removeUnusedVarDeclsFromFile(file, notDeep, quiet)
+            overrideFile(scavenger, file)
         }
+    }
+
+    private fun overrideFile(scavenger: Scavenger, file: File) {
+        if (file.extension != "java") {
+            if (!quiet) {
+                println("Not Java file ${file.path}")
+            }
+            return
+        }
+        if (!quiet) {
+            println("File ${file.path}:")
+        }
+        val result = scavenger.removeUnusedVarDecls(file.readText(), System.out, notDeep, quiet)
+        file.writeText(result)
     }
 }
 

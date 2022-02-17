@@ -8,37 +8,26 @@ import com.github.javaparser.ast.stmt.BlockStmt
 import com.github.javaparser.ast.visitor.ModifierVisitor
 import com.github.javaparser.ast.visitor.Visitable
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter
-import java.io.File
+import java.io.PrintStream
 
 class Scavenger {
-    fun removeUnusedVarDeclsFromFile(file: File, notDeep: Boolean, quiet: Boolean) {
-        if (file.extension != "java") {
-            if (!quiet) {
-                println("Not Java file ${file.path}")
-            }
-            return
-        }
-
-        val compilationUnit = StaticJavaParser.parse(file)
-
-        if (!quiet) {
-            println("File ${file.path}:")
-        }
+    fun removeUnusedVarDecls(code: String, log: PrintStream, notDeep: Boolean, quiet: Boolean): String {
+        val compilationUnit = StaticJavaParser.parse(code)
 
         var iteration = 1
         while (true) {
             val unusedVarDecls = getUnusedAstVarDecls(compilationUnit)
             if (unusedVarDecls.isEmpty()) {
                 if (!quiet && iteration == 1) {
-                    println("No declarations removed!")
+                    log.println("No declarations removed!")
                 }
                 break
             }
             removeUnusedAstVarDecls(compilationUnit, unusedVarDecls)
             if (!quiet) {
-                println("removed on iteration $iteration :")
+                log.println("removed on iteration $iteration :")
                 unusedVarDecls.forEach {
-                    println("variable declaration on line ${it.line} with name ${it.name}  (scopeId ${it.scopeId})")
+                    log.println("variable declaration on line ${it.line} with name ${it.name}  (scopeId ${it.scopeId})")
                 }
             }
             if (notDeep) {
@@ -47,7 +36,7 @@ class Scavenger {
             iteration++
         }
 
-        file.writeText(compilationUnit.toString())
+        return compilationUnit.toString()
     }
 
     private fun removeUnusedAstVarDecls(compilationUnit: CompilationUnit, unusedVarDecls: Set<VariableDeclaration>) {
