@@ -12,7 +12,7 @@ class ScavengerTest {
 
     @Test
     fun testAll() {
-        for (i in 1..2) {
+        for (i in 1..3) {
             var testName = "/test"
             if (i < 10) testName += "0"
             testName += i.toString()
