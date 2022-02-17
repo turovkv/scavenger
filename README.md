@@ -12,15 +12,16 @@ The app overwrites the files.
 ---
 build:
 ```
-./gradlew build
+ ./gradlew installDist
 ```
 run:
 ```
-java -jar build/libs/scavenger-1.0-SNAPSHOT.jar --help
+./build/install/scavenger/bin/scavenger --help
 
 Usage: cli [OPTIONS] FILE
+
 Options:
-  --not-deep   Do not remove deep (iteratively until there are no more)
+  --not-deep   Do not remove deeply (until there are no more unused)
   -q, --quiet  No output to console
   -h, --help   Show this message and exit
 ```
@@ -69,7 +70,7 @@ class myClass {
   
   Console:
   ```
-java -jar build/libs/scavenger-1.0-SNAPSHOT.jar src/test/resources/test.java
+./build/install/scavenger/bin/scavenger src/test/resources/test.java
   
 File src/test/resources/test.java:
 removed on iteration 1 :
@@ -121,7 +122,7 @@ class myClass {
   
   Console:
   ```
-java -jar build/libs/scavenger-1.0-SNAPSHOT.jar src/test/resources/test2.java
+./build/install/scavenger/bin/scavenger src/test/resources/test2.java
   
 File src/test/resources/test2.java:
 removed on iteration 1 :
@@ -180,7 +181,7 @@ class myClass {
   
   Console:
   ```
-java -jar build/libs/scavenger-1.0-SNAPSHOT.jar --not-deep src/test/resources/test2.java 
+./build/install/scavenger/bin/scavenger --not-deep src/test/resources/test2.java 
   
 File src/test/resources/test2.java:
 removed on iteration 1 :
